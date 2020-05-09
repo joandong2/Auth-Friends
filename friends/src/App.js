@@ -18,12 +18,19 @@ function App() {
 
     return (
         <Router>
-            <div className="container">
-                <div className="App">
-                    <ul>
+            <div className="App">
+                <nav class="navbar navbar-light bg-light fixed-top">
+                    <a class="navbar-brand" href="#">
+                        Auth-Friends
+                    </a>
+
+                    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
                         {logged ? (
                             <>
-                                <li>
+                                <li class="nav-item">
+                                    <Link to="/friends">Friends</Link>
+                                </li>
+                                <li class="nav-item">
                                     <Link
                                         to="/logout"
                                         onClick={() => {
@@ -34,16 +41,15 @@ function App() {
                                         Logout
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link to="/friends">Friends</Link>
-                                </li>
                             </>
                         ) : (
-                            <li>
+                            <li class="nav-item">
                                 <Link to="/login">Login</Link>
                             </li>
                         )}
                     </ul>
+                </nav>
+                <main role="main" className="container">
                     <Switch>
                         <PrivateRoute
                             exact
@@ -60,7 +66,7 @@ function App() {
                             )}
                         />
                     </Switch>
-                </div>
+                </main>
             </div>
         </Router>
     );
