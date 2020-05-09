@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import Login from "./components/Login";
 import Friends from "./components/Friends";
+import AddFriend from "./components/AddFriend";
 import PrivateRoute from "./components/PrivateRoute";
 
 import "./App.css";
@@ -19,35 +20,37 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <nav class="navbar navbar-light bg-light fixed-top">
-                    <a class="navbar-brand" href="#">
-                        Auth-Friends
-                    </a>
+                <nav className="navbar navbar-light bg-dark fixed-top">
+                    <div className="container">
+                        <p className="navbar-brand">Auth-Friends</p>
 
-                    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-                        {logged ? (
-                            <>
-                                <li class="nav-item">
-                                    <Link to="/friends">Friends</Link>
+                        <ul className="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                            {logged ? (
+                                <>
+                                    <li className="nav-item dropdown">
+                                        <Link to="/friends">Friends</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to="/logout"
+                                            onClick={() => {
+                                                localStorage.removeItem(
+                                                    "token"
+                                                );
+                                                setLogged(false);
+                                            }}
+                                        >
+                                            Logout
+                                        </Link>
+                                    </li>
+                                </>
+                            ) : (
+                                <li className="nav-item">
+                                    <Link to="/login">Login</Link>
                                 </li>
-                                <li class="nav-item">
-                                    <Link
-                                        to="/logout"
-                                        onClick={() => {
-                                            localStorage.removeItem("token");
-                                            setLogged(false);
-                                        }}
-                                    >
-                                        Logout
-                                    </Link>
-                                </li>
-                            </>
-                        ) : (
-                            <li class="nav-item">
-                                <Link to="/login">Login</Link>
-                            </li>
-                        )}
-                    </ul>
+                            )}
+                        </ul>
+                    </div>
                 </nav>
                 <main role="main" className="container">
                     <Switch>
@@ -56,9 +59,11 @@ function App() {
                             path="/friends"
                             component={Friends}
                         />
-                        {/*<Route path="/login" component={Login} />
-                        <Route component={Login} /> */}
-
+                        <PrivateRoute
+                            exact
+                            path="/add-friend"
+                            component={AddFriend}
+                        />
                         <Route
                             path="/login"
                             render={(props) => (
