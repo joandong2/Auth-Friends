@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
 
-const AddFriend = (props) => {
+const EditFriend = (props) => {
     const [state, setState] = useState({
+        id: "",
         name: "",
         age: "",
         email: "",
     });
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`/friends/${props.match.params.id}`)
+            .then((res) => {
+                setState(res.data);
+            })
+            .catch((err) => {
+                console.log("Err is: ", err);
+            });
+    }, [props]);
+
+    console.log(state);
 
     const handleChange = (e) => {
         setState({
@@ -19,7 +33,7 @@ const AddFriend = (props) => {
         e.preventDefault();
 
         axiosWithAuth()
-            .post("/friends", {
+            .put(`/friends/${state.id}`, {
                 name: state.name,
                 age: state.age,
                 email: state.email,
@@ -41,7 +55,7 @@ const AddFriend = (props) => {
 
     return (
         <>
-            <p>Add Friend</p>
+            <p>Edit Friend</p>
             <form onSubmit={submitHander}>
                 <div className="form-group">
                     <input
@@ -74,11 +88,11 @@ const AddFriend = (props) => {
                     />
                 </div>
                 <button type="submit" className="btn btn-dark btn-sm">
-                    Submit
+                    Update
                 </button>
             </form>
         </>
     );
 };
 
-export default AddFriend;
+export default EditFriend;

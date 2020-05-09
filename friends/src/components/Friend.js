@@ -1,10 +1,15 @@
 import React from "react";
 import { axiosWithAuth } from "../util/axiosWithAuth";
+import { Link } from "react-router-dom";
 
 const Friend = (props) => {
     const deleteHandler = (id) => {
         axiosWithAuth()
             .delete(`/friends/${id}`)
+            .then((res) => {
+                //console.log(res);
+                window.location.reload(true);
+            })
             .catch((err) => {
                 console.log("Err is: ", err);
             });
@@ -17,9 +22,15 @@ const Friend = (props) => {
             <td>{props.friend.age}</td>
             <td>{props.friend.email}</td>
             <td>
-                <button type="button" className="btn btn-sm btn-info">
+                {/* <button type="button" className="btn btn-sm btn-info">
                     Edit
-                </button>
+                </button> */}
+                <Link
+                    to={`/edit/${props.friend.id}`}
+                    className="btn btn-sm btn-info"
+                >
+                    Edit
+                </Link>
                 <button
                     type="button"
                     className="btn btn-sm btn-danger"
