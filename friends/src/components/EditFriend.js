@@ -54,44 +54,46 @@ const EditFriend = (props) => {
     };
 
     return (
-        <>
-            <p>Edit Friend</p>
-            <form onSubmit={submitHander}>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Name..."
-                        value={state.name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        name="age"
-                        className="form-control"
-                        placeholder="Age..."
-                        value={state.age}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        name="email"
-                        className="form-control"
-                        placeholder="Email Address..."
-                        value={state.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit" className="btn btn-dark btn-sm">
-                    Update
-                </button>
-            </form>
-        </>
+        <div className="row">
+            <div className="col-md-5">
+                <p>Edit Friend</p>
+                <form onSubmit={submitHander}>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            placeholder="Name..."
+                            value={state.name}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="age"
+                            className="form-control"
+                            placeholder="Age..."
+                            value={state.age}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="email"
+                            className="form-control"
+                            placeholder="Email Address..."
+                            value={state.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-dark btn-sm">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
     );
 };
 

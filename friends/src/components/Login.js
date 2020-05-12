@@ -33,31 +33,36 @@ const Login = (props) => {
     };
 
     return (
-        <form onSubmit={submitHander}>
-            <div className="form-group">
-                <input
-                    type="text"
-                    name="username"
-                    className="form-control"
-                    placeholder="username"
-                    value={user.username}
-                    onChange={handleChange}
-                />
+        <div className="row">
+            <div className="col-md-5">
+                <p>Login</p>
+                <form onSubmit={submitHander}>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="username"
+                            className="form-control"
+                            placeholder="username"
+                            value={user.username}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="password"
+                            name="password"
+                            className="form-control"
+                            placeholder="password"
+                            value={user.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-dark btn-sm">
+                        Login
+                    </button>
+                </form>
             </div>
-            <div className="form-group">
-                <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="password"
-                    value={user.password}
-                    onChange={handleChange}
-                />
-            </div>
-            <button type="submit" className="btn btn-dark btn-sm">
-                Login
-            </button>
-        </form>
+        </div>
     );
 };
 

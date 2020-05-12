@@ -7,7 +7,6 @@ const Friend = (props) => {
         axiosWithAuth()
             .delete(`/friends/${id}`)
             .then((res) => {
-                //console.log(res);
                 window.location.reload(true);
             })
             .catch((err) => {
@@ -22,9 +21,6 @@ const Friend = (props) => {
             <td>{props.friend.age}</td>
             <td>{props.friend.email}</td>
             <td>
-                {/* <button type="button" className="btn btn-sm btn-info">
-                    Edit
-                </button> */}
                 <Link
                     to={`/edit/${props.friend.id}`}
                     className="btn btn-sm btn-info"

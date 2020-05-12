@@ -20,7 +20,7 @@ const Friends = () => {
 
     return (
         <>
-            <Link to="/add-friend" className="btn btn-sm btn-info">
+            <Link to="/add" className="btn btn-sm btn-info">
                 Add Friend
             </Link>
 
